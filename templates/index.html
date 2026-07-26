@@ -1,130 +1,246 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>YouTube ডাউনলোডার | Robbany Bagha</title>
-    
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube ডাউনলোডার - GitHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: #161b22;
+            border-radius: 24px;
+            padding: 40px 30px;
+            border: 1px solid #30363d;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        h1 span {
+            background: #238636;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #fff;
+        }
+        .sub {
+            color: #8b949e;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        .repo-card {
+            background: #0d1117;
+            border-radius: 16px;
+            padding: 20px 24px;
+            border: 1px solid #30363d;
+            margin-bottom: 25px;
+        }
+        .repo-card .name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #58a6ff;
+        }
+        .repo-card .desc {
+            color: #8b949e;
+            margin: 8px 0 12px;
+            font-size: 15px;
+        }
+        .repo-card .stats {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: #8b949e;
+        }
+        .repo-card .stats i {
+            margin-right: 4px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 30px;
+            background: #238636;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background: #2ea043;
+            transform: scale(1.02);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+        }
+        .btn-outline:hover {
+            background: #1c2128;
+            border-color: #8b949e;
+        }
+        .code-block {
+            background: #0d1117;
+            border-radius: 12px;
+            padding: 16px 20px;
+            border: 1px solid #30363d;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #e6edf3;
+            margin: 15px 0;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .code-block .cmd {
+            color: #58a6ff;
+        }
+        .code-block .comment {
+            color: #8b949e;
+        }
+        .steps {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        .steps li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .steps li strong {
+            color: #58a6ff;
+        }
+        .footer {
+            margin-top: 25px;
+            padding-top: 18px;
+            border-top: 1px solid #30363d;
+            text-align: center;
+            color: #8b949e;
+            font-size: 14px;
+        }
+        .footer .creator {
+            color: #58a6ff;
+            font-weight: 600;
+        }
+        .badge {
+            display: inline-block;
+            background: #1f2937;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #8b949e;
+        }
+        @media (max-width: 500px) {
+            .container { padding: 20px 16px; }
+            h1 { font-size: 22px; flex-wrap: wrap; }
+            .repo-card .stats { flex-wrap: wrap; gap: 10px; }
+            .btn { width: 100%; text-align: center; }
+            .code-block { font-size: 12px; padding: 12px 14px; }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- হেডার -->
-        <header class="header">
-            <div class="logo-wrapper">
-                <div class="logo-icon">
-                    <i class="fab fa-youtube"></i>
-                </div>
-                <h1>YouTube <span>Downloader</span></h1>
-            </div>
-            <p class="subtitle">
-                <i class="fas fa-arrow-down"></i> 
-                ভিডিও লিংক দিন, কোয়ালিটি বেছে নিন ও ডাউনলোড করুন
-            </p>
-        </header>
+<div class="container">
+    <h1>
+        <span>📁</span> YouTube Downloader
+        <span>Public</span>
+    </h1>
+    <p class="sub">মোবাইলে YouTube ভিডিও ডাউনলোড করুন — Python Flask + HTML/CSS/JS</p>
 
-        <!-- ইনপুট -->
-        <div class="input-section">
-            <div class="input-wrapper">
-                <i class="fas fa-link input-icon"></i>
-                <input 
-                    type="text" 
-                    id="videoUrl" 
-                    placeholder="https://youtube.com/watch?v=..." 
-                    autocomplete="url"
-                />
-                <button id="fetchBtn" class="btn-primary">
-                    <i class="fas fa-search"></i> খুঁজুন
-                </button>
-            </div>
+    <!-- রিপো কার্ড -->
+    <div class="repo-card">
+        <div class="name">obbany / Youtube-Downloader</div>
+        <div class="desc">
+            🎬 YouTube ভিডিও ডাউনলোডার — মোবাইল সার্ভার, Wi-Fi নেটওয়ার্কে সবাই ব্যবহার করতে পারবে।
         </div>
-
-        <!-- লোডার -->
-        <div id="loader" class="loader">
-            <div class="spinner"></div>
-            <p>ভিডিও তথ্য আনতে হচ্ছে...</p>
-            <div class="loader-bar">
-                <div class="loader-progress" id="loaderProgress"></div>
-            </div>
+        <div class="stats">
+            <span><i>⭐</i> 12</span>
+            <span><i>🔀</i> 3</span>
+            <span><i>🐍</i> Python 100%</span>
+            <span><span class="badge">MIT License</span></span>
         </div>
-
-        <!-- ভিডিও কার্ড -->
-        <div id="videoCard" class="video-card">
-            <div class="video-top">
-                <div class="thumb-wrapper">
-                    <img id="thumb" src="" alt="থাম্বনেইল" />
-                    <div class="duration-badge" id="durationBadge">⏱️ ০:০০</div>
-                </div>
-                <div class="video-info">
-                    <h2 id="title">ভিডিও টাইটেল</h2>
-                    <div class="video-meta">
-                        <span><i class="fas fa-clock"></i> <span id="duration">০:০০</span></span>
-                        <span><i class="fas fa-eye"></i> <span id="views">—</span></span>
-                        <span><i class="fas fa-user"></i> <span id="uploader">—</span></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="format-section">
-                <h3><i class="fas fa-layer-group"></i> সিলেক্ট করুন কোয়ালিটি</h3>
-                <div class="format-grid" id="formatGrid"></div>
-            </div>
-
-            <button id="downloadBtn" class="btn-download">
-                <i class="fas fa-download"></i> ডাউনলোড করুন
-            </button>
-        </div>
-
-        <!-- ফিচার -->
-        <div class="features">
-            <div class="feature-item">
-                <i class="fas fa-bolt"></i>
-                <span>দ্রুত ডাউনলোড</span>
-            </div>
-            <div class="feature-item">
-                <i class="fas fa-shield-alt"></i>
-                <span>১০০% নিরাপদ</span>
-            </div>
-            <div class="feature-item">
-                <i class="fas fa-mobile-alt"></i>
-                <span>মোবাইল সাপোর্ট</span>
-            </div>
-            <div class="feature-item">
-                <i class="fas fa-infinity"></i>
-                <span>সীমাহীন ডাউনলোড</span>
-            </div>
-        </div>
-
-        <!-- ফুটার -->
-        <footer class="footer">
-            <div class="footer-content">
-                <p>
-                    <i class="fas fa-code"></i> 
-                    <strong>ওয়েবসাইট ক্রিয়েটর:</strong> 
-                    <span class="creator-name">Robbany Bagha</span>
-                </p>
-                <p class="footer-note">
-                    ⚡ শুধুমাত্র ব্যক্তিগত ব্যবহারের জন্য | কোনো ডাটা সংরক্ষণ করা হয় না
-                </p>
-                <div class="social-links">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                </div>
-                <p class="copyright">
-                    &copy; 2026 <span class="creator-name">Robbany Bagha</span> | সর্বস্বত্ব সংরক্ষিত
-                </p>
-            </div>
-        </footer>
     </div>
 
-    <!-- টোস্ট -->
-    <div id="toast" class="toast"></div>
+    <!-- ক্লোন লিংক -->
+    <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px;">
+        <a href="https://github.com/obbany/Youtube-Downloader.git" class="btn" target="_blank">
+            <i>📋</i> ক্লোন করুন
+        </a>
+        <a href="https://github.com/obbany/Youtube-Downloader" class="btn btn-outline" target="_blank">
+            <i>🌐</i> GitHub-এ দেখুন
+        </a>
+    </div>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- Termux কমান্ড -->
+    <h3 style="margin: 20px 0 10px; color: #e6edf3;">⚡ Termux-এ রান করার ধাপ</h3>
+
+    <div class="code-block">
+        <span class="comment"># ১. স্টোরেজ পারমিশন</span>
+        termux-setup-storage
+
+        <span class="comment"># ২. রিপো ক্লোন করুন</span>
+        git clone https://github.com/obbany/Youtube-Downloader.git
+
+        <span class="comment"># ৩. ফোল্ডারে যান</span>
+        <span class="cmd">cd Youtube-Downloader</span>
+
+        <span class="comment"># ৪. ডিপেন্ডেন্সি ইনস্টল</span>
+        pip install -r requirements.txt
+
+        <span class="comment"># ৫. সার্ভার চালু করুন</span>
+        <span class="cmd">python app.py</span>
+    </div>
+
+    <!-- ব্যবহার বিধি -->
+    <h3 style="margin: 20px 0 10px; color: #e6edf3;">📱 ব্যবহার করার নিয়ম</h3>
+    <ol class="steps">
+        <li><strong>Termux</strong> ওপেন করুন এবং উপরের কমান্ডগুলো দিন।</li>
+        <li>সার্ভার চালু হলে <strong>IP ঠিকানা</strong> দেখাবে (যেমন: <code>http://192.168.x.x:5000</code>)।</li>
+        <li>একই <strong>Wi-Fi নেটওয়ার্কে</strong> থাকা যেকোনো ডিভাইসের ব্রাউজারে এই লিংকটি দিন।</li>
+        <li>YouTube লিংক পেস্ট করুন → কোয়ালিটি সিলেক্ট করুন → <strong>ডাউনলোড</strong> করুন!</li>
+    </ol>
+
+    <!-- ফিচার -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 12px; margin: 20px 0; background: #0d1117; border-radius: 16px; padding: 16px; border: 1px solid #30363d;">
+        <div style="text-align: center;"><span style="font-size: 24px;">🚀</span><br>দ্রুত ডাউনলোড</div>
+        <div style="text-align: center;"><span style="font-size: 24px;">🔒</span><br>১০০% নিরাপদ</div>
+        <div style="text-align: center;"><span style="font-size: 24px;">📱</span><br>মোবাইল ফ্রেন্ডলি</div>
+        <div style="text-align: center;"><span style="font-size: 24px;">🌐</span><br>সবার জন্য ওপেন</div>
+    </div>
+
+    <!-- ফুটার -->
+    <div class="footer">
+        <p>
+            <i>🧑‍💻</i> <strong>ওয়েবসাইট ক্রিয়েটর:</strong> 
+            <span class="creator">Robbany Bagha</span>
+        </p>
+        <p style="font-size: 13px; margin-top: 6px; color: #6e7681;">
+            &copy; 2026 Robbany Bagha | সর্বস্বত্ব সংরক্ষিত
+        </p>
+    </div>
+</div>
+
 </body>
-                                                      </html>
+</html>
